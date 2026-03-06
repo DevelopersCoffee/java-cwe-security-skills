@@ -1,0 +1,50 @@
+name: Generate CWE Skill Catalog
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'cwe-*/**'
+  pull_request:
+    paths:
+      - 'cwe-*/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Generate skill catalog
+        run: python scripts/generate-skill-index.py
+
+      - name: Update index.md
+        run: |
+          if [ -f "docs/skills/_generated_index.md" ]; then
+            mv docs/skills/_generated_index.md docs/skills/index.md
+          fi
+
+      - name: Commit changes
+        if: github.event_name == 'push'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/skills/
+          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Auto-generate skill catalog [skip ci]"
+          git push || echo "No changes to push"
+

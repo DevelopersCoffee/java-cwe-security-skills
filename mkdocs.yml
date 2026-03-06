@@ -1,0 +1,87 @@
+site_name: Java CWE Security Skills
+site_url: https://developerscoffee.github.io/java-cwe-security-skills/
+site_author: Developers Coffee
+site_description: Deterministic Java security remediation skills mapped to MITRE CWE vulnerabilities for AI coding agents and DevSecOps platforms.
+
+repo_name: DevelopersCoffee/java-cwe-security-skills
+repo_url: https://github.com/DevelopersCoffee/java-cwe-security-skills
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+  logo: https://raw.githubusercontent.com/DevelopersCoffee/developerscoffee.github.io/main/img/logo.png
+
+plugins:
+  - search
+  - tags
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - tables
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/DevelopersCoffee
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/DevlopersCoffee
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/company/developer-scoffee
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Introduction: getting-started/introduction.md
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quickstart.md
+  - Skills Catalog:
+    - Overview: skills/index.md
+    - Injection:
+      - SQL Injection (CWE-89): skills/cwe-89-sql-injection.md
+      - XSS (CWE-79): skills/cwe-79-xss.md
+      - Command Injection (CWE-77): skills/cwe-77-command-injection.md
+      - LDAP Injection (CWE-90): skills/cwe-90-ldap-injection.md
+      - XPath Injection (CWE-643): skills/cwe-643-xpath-injection.md
+    - Cryptography:
+      - Weak Cryptography (CWE-327): skills/cwe-327-weak-cryptography.md
+      - Hardcoded Keys (CWE-321): skills/cwe-321-hardcoded-crypto-key.md
+      - Weak PRNG (CWE-330): skills/cwe-330-weak-prng.md
+    - Access Control:
+      - Path Traversal (CWE-22): skills/cwe-22-path-traversal.md
+      - Open Redirect (CWE-601): skills/cwe-601-open-redirect.md
+  - Contributing: contributing.md
+  - Changelog: changelog.md
+
